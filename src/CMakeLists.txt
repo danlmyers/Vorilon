@@ -24,8 +24,8 @@ set(VORILOND_SRC vorilond.cpp	DebugHandle.h
 option(DEBUG "Build Vorilon with Debugging code" ON)
 
 #VDConfig.h Creation
-configure_file(${CMAKE_SOURCE_DIR}/server/VDconfig.h.cmake
-				${CMAKE_BINARY_DIR}/server/VDconfig.h)
+configure_file(${CMAKE_SOURCE_DIR}/src/VDconfig.h.cmake
+				${CMAKE_BINARY_DIR}/src/VDconfig.h)
 
 
 #Boost Libraries
@@ -35,6 +35,6 @@ set(LIBS ${LIBS} ${Boost_LIBRARIES})
 
 
 #Add Executable
-include_directories(${CMAKE_BINARY_DIR}/server)
+include_directories(${CMAKE_BINARY_DIR}/src)
 add_executable ( vorilond ${VORILOND_SRC})
 target_link_libraries( vorilond ${LIBS})
