@@ -19,7 +19,7 @@
 #ifndef VDCONFIG_H_
 #define VDCONFIG_H_
 #cmakedefine DEBUG 1
-#define VORILOND_DEBUGCONFPATH "${CMAKE_SOURCE_DIR}/server/"
+#define VORILOND_DEBUGCONFPATH "${CMAKE_SOURCE_DIR}/src/"
 
 
 #endif /* VDCONFIG_H_ */
