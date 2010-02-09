@@ -18,6 +18,7 @@
 #include <boost/exception/all.hpp>
 #include <stdexcept>
 #include <errno.h>
+#include <iostream>
 #include "ConfigData.h"
 #include "ServerData.h"
 #include "ErrorHandle.h"
@@ -29,13 +30,11 @@ int main(int argc, char* argv[]){
 		VR::ServerData sData;
 		VR::ConfigData ConD(&sData);
 		ConD.ReadData();
-		BOOST_THROW_EXCEPTION(VR::Error::variable_error() <<
-			VR::Error::errno_info(errno) <<
-			VR::Error::function_info("Main Test"));
+		throw VR::Error::general_error() << VR::Error::errno_info(2);
 	}
-	catch (VR::Error::error_ & e) {
+	catch (boost::exception & e) {
 		VR::Debug::ConsoleMsg("Boost Error");
-		VR::Error::Msg(*e);
+		std::cout << diagnostic_information(e);
 	}
 	
 	return 0;

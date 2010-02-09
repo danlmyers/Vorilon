@@ -19,6 +19,7 @@
 #include <boost/exception/all.hpp>
 #include <boost/shared_ptr.hpp>
 #include <errno.h>
+#include <stdexcept>
 #include <string>
 #include <iostream>
 
@@ -30,43 +31,44 @@ namespace Vorilon {
 		typedef boost::error_info<struct tag_function,std::string> function_info; //Name of the Function
 		typedef boost::error_info<struct tag_file_name,std::string> file_name_info; //The file name of a failed file operator
 		
-		class error_ : public std::exception, boost::exception {
-		public:
-			char const * what() const throw(){
-				return "Vorilon Standard Error";
-			}
-			
-		protected:
-			~error_() throw(){}
-		};
+//		class error : virtual boost::exception, virtual std::exception {
+//		public:
+//			char const * what() const throw(){
+//				return "Vorilon Standard Error";
+//			}
+//			
+//		protected:
+//			~error() throw(){}
+//		};
 		
-		class general_error_ : public error_{};
-		class variable_error : public general_error_{};
+		//Error identifiers
+		struct general_error : virtual boost::exception, virtual std::exception { };
+		struct variable_error : virtual general_error{};
 		
 		
 		class Msg{
 		public:
-			Msg(boost::exception const & x){
+			Msg(boost::exception & x){
 				std::cout << "------------------------------------------------------" << std::endl;
-				file_info(x);
-				clib_info(x);
+//				file_info(x);
+//				clib_info(x);
 				std::cout << std::endl << "Diagnostic Info: " << std::endl;
 				std::cout << diagnostic_information(x);
 			}
 			virtual ~Msg(){}
 			
 		private:
-			void file_info(boost::exception const & x){
-				if( boost::shared_ptr<std::string const> fn = boost::get_error_info<file_name_info>(x) )
-					std::cout << "File Name: " << *fn << std::endl;
-			}
-			
-			void clib_info(boost::exception const & x){
-				if( boost::shared_ptr<int const> err=boost::get_error_info<errno_info>(x))
-					std::cout << "OS Error: " << *err << std::endl;
-				if( boost::shared_ptr<std::string const> fn=boost::get_error_info<function_info>(x))
-					std::cout << "Failed Function: " << *fn << std::endl;
-			}
+			//void file_info(boost::exception const & x){
+//				if( boost::shared_ptr<std::string const> fn = boost::get_error_info<file_name_info>(x) )
+//					std::cout << "File Name: " << *fn << std::endl;
+//			}
+//			
+//			void clib_info(boost::exception const & x){
+//				if( boost::shared_ptr<int const> err=boost::get_error_info<errno_info>(x))
+//					std::cout << "OS Error: " << *err << std::endl;
+//				if( boost::shared_ptr<std::string const> fn=boost::get_error_info<function_info>(x))
+//					std::cout << "Failed Function: " << *fn << std::endl;
+//			}
 		};
 	}
 }
