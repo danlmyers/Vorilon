@@ -16,7 +16,7 @@
  */
 #ifndef ERRORHANDLE_H_
 #define ERRORHANDLE_H_
-#include <boost/exception.hpp>
+#include <boost/exception/all.hpp>
 #include <boost/shared_ptr.hpp>
 #include <errno.h>
 #include <string>

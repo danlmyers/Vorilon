@@ -15,7 +15,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#include <boost/exception.hpp>
+#include <boost/exception/all.hpp>
+#include <stdexcept>
 #include <errno.h>
 #include "ConfigData.h"
 #include "ServerData.h"
@@ -28,7 +29,9 @@ int main(int argc, char* argv[]){
 		VR::ServerData sData;
 		VR::ConfigData ConD(&sData);
 		ConD.ReadData();
-		BOOST_THROW_EXCEPTION(VR::Error::variable_error());
+		BOOST_THROW_EXCEPTION(VR::Error::variable_error() <<
+			VR::Error::errno_info(errno) <<
+			VR::Error::function_info("Main Test"));
 	}
 	catch (VR::Error::error_ & e) {
 		VR::Debug::ConsoleMsg("Boost Error");
