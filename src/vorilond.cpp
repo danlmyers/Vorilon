@@ -15,9 +15,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#include <boost/exception/all.hpp>
-#include <stdexcept>
-#include <errno.h>
 #include <iostream>
 #include "ConfigData.h"
 #include "ServerData.h"
@@ -30,12 +27,16 @@ int main(int argc, char* argv[]){
 		VR::ServerData sData;
 		VR::ConfigData ConD(&sData);
 		ConD.ReadData();
-		throw VR::Error::general_error() << VR::Error::errno_info(2);
+		//BOOST_THROW_EXCEPTION(VR::Error::general_error() << VR::Error::errno_info(2)); //Left as tmp example
 	}
 	catch (boost::exception & e) {
-		VR::Debug::ConsoleMsg("Boost Error");
+		VR::Debug::ConsoleMsg("Vorilon Standard Exception");
 		VR::Debug::ConsoleMsg(diagnostic_information(e));
 	}
-	
+	catch (std::exception & e){
+		std::cerr << "Vorilon has experienced an error and is now exiting." << std::endl;
+		VR::Debug::ConsoleMsg(e.what());
+	}
+	catch (...){std::cerr << "Vorilon as experienced a default exception and has exited." << std::endl;}
 	return 0;
 }

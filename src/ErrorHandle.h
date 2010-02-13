@@ -31,8 +31,11 @@ namespace Vorilon {
 		typedef boost::error_info<struct tag_file_name,std::string> file_name_info; //The file name of a failed file operator
 		
 		//Error identifiers
-		struct general_error : virtual boost::exception, virtual std::exception { };
-		struct variable_error : virtual general_error{};
+		struct General : virtual boost::exception, virtual std::exception { };
+		struct Variable : virtual General{};
+		struct Exit_Command : virtual General{};
+		struct File_Not_Found : virtual General{};
+		struct File_IO : virtual General{};
 		
 	}
 }

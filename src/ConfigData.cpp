@@ -38,8 +38,15 @@ namespace Vorilon{
 	ConfigData::~ConfigData(){}
 
 	void ConfigData::ReadData(){
-		LoadConfigFile(CheckForConf());
-		
+		try{
+			LoadConfigFile(CheckForConf());
+		}
+		catch (Error::File_Not_Found & e){
+			Debug::ConsoleMsg("Config File not found");
+			Debug::ConsoleMsg(diagnostic_information(e));
+		}
+
+
 		//Load Values from config file into ServerData
 		//TODO Error Checking!
 		sData.Port(boost::lexical_cast<unsigned short>(KeyValue.find("port")->second));
@@ -61,6 +68,8 @@ namespace Vorilon{
 		if(fs::exists(tmpPath)){
 			Debug::ConsoleMsg("Config file found: " + tmpPath.string());
 			return tmpPath;
+		}else{
+			BOOST_THROW_EXCEPTION(Error::File_Not_Found() << Error::file_name_info(tmpPath.string()));
 		}
 		return NULL;
 	}

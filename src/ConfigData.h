@@ -26,6 +26,7 @@
 #include <map>
 #include "ServerData.h"
 #include "DebugHandle.h"
+#include "ErrorHandle.h"
 #include "VDconfig.h"
 
 namespace fs = boost::filesystem;
