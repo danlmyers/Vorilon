@@ -30,8 +30,10 @@ configure_file(${CMAKE_SOURCE_DIR}/src/VDconfig.h.cmake
 
 #Boost Libraries
 SET(Boost_ADDITIONAL_VERSIONS "1.42" "1.42.0")
+set(Boost_USE_STATIC_LIBS   ON)
 find_package(Boost 1.42 REQUIRED COMPONENTS system regex date_time filesystem)
 include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
 set(LIBS ${LIBS} ${Boost_LIBRARIES})
 
 
