@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
 	}
 	catch (boost::exception & e) {
 		VR::Debug::ConsoleMsg("Boost Error");
-		std::cout << diagnostic_information(e);
+		VR::Debug::ConsoleMsg(diagnostic_information(e));
 	}
 	
 	return 0;
