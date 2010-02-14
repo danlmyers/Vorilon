@@ -54,12 +54,15 @@ namespace Vorilon{
 	}
 	
 	fs::path ConfigData::CheckForConf(){
-		for(std::list<fs::path>::iterator it=CFPaths.begin(); it!=CFPaths.end(); ++it){
-			if(fs::exists(*it)){
-				Debug::ConsoleMsg("Config file found: " + it->string());
-				return *it;
+		BOOST_FOREACH(fs::path path, CFPaths){
+			if(fs::exists(path)){
+				Debug::ConsoleMsg("Config file found: " + path.string());
+				return path;
 			}
 		}
+
+		//If we made it this far, then the config file wasn't found at all.
+		BOOST_THROW_EXCEPTION(Error::File_Not_Found() << Error::file_name_info("vorilond.conf Not found"));
 		return NULL;
 	}
 
@@ -69,7 +72,7 @@ namespace Vorilon{
 			Debug::ConsoleMsg("Config file found: " + tmpPath.string());
 			return tmpPath;
 		}else{
-			BOOST_THROW_EXCEPTION(Error::File_Not_Found() << Error::file_name_info(tmpPath.string()));
+			BOOST_THROW_EXCEPTION(Error::File_Not_Found() << Error::file_name_info("vorilond.conf Not Found"));
 		}
 		return NULL;
 	}

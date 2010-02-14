@@ -20,6 +20,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/foreach.hpp>
 #include <string>
 #include <list>
 #include <iostream>
