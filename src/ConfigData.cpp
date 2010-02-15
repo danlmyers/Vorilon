@@ -42,8 +42,12 @@ namespace Vorilon{
 			LoadConfigFile(CheckForConf());
 		}
 		catch (Error::File_Not_Found & e){
-			Debug::ConsoleMsg("Config File not found");
+			if (std::string *file=boost::get_error_info<Error::file_name_info>(e)){
+				std::cerr << *file << std::endl;
+			}
+
 			Debug::ConsoleMsg(diagnostic_information(e));
+			BOOST_THROW_EXCEPTION(Error::Exit_Command());
 		}
 
 

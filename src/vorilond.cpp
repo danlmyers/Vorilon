@@ -27,7 +27,11 @@ int main(int argc, char* argv[]){
 		VR::ServerData sData;
 		VR::ConfigData ConD(&sData);
 		ConD.ReadData();
-		//BOOST_THROW_EXCEPTION(VR::Error::general_error() << VR::Error::errno_info(2)); //Left as tmp example
+	}
+	catch (VR::Error::Exit_Command & e) {
+		VR::Debug::ConsoleMsg("Exit Command");
+		VR::Debug::ConsoleMsg(diagnostic_information(e));
+		return 0;
 	}
 	catch (boost::exception & e) {
 		VR::Debug::ConsoleMsg("Vorilon Standard Exception");
@@ -37,6 +41,9 @@ int main(int argc, char* argv[]){
 		std::cerr << "Vorilon has experienced an error and is now exiting." << std::endl;
 		VR::Debug::ConsoleMsg(e.what());
 	}
-	catch (...){std::cerr << "Vorilon as experienced a default exception and has exited." << std::endl;}
+	catch (...){
+		std::cerr << "Vorilon as experienced a default unhandled exception and has exited." << std::endl <<
+			boost::current_exception_diagnostic_information();
+	}
 	return 0;
 }
