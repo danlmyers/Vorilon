@@ -36,11 +36,6 @@ include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 set(LIBS ${LIBS} ${Boost_LIBRARIES})
 
-#Google Log Libraries
-find_package(Glog REQUIRED)
-include_directories(${Glog_INCLUDE_DIRS})
-set(LIBS ${LIBS} ${Glog_LIBRARIES})
-
 #Add Executable
 include_directories(${CMAKE_BINARY_DIR}/src)
 add_executable ( vorilond ${VORILOND_SRC})

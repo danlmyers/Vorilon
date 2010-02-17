@@ -19,8 +19,6 @@ Libraries
 Vorilon requires the use of several libraries and build tools.
 Cmake v2.8: http://www.cmake.org/
 Boost Libraries v1.42: http://www.boost.org/
-Google Log v0.3.0: http://zi.fi/cmake/Modules/
-Google Flags v1.1: http://code.google.com/p/google-gflags/
 
 Build
 --------------------------------------------------------------------
