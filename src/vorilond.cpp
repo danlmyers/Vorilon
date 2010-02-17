@@ -16,6 +16,7 @@
 */
 
 #include <iostream>
+#include <glog/logging.h>
 #include "ConfigData.h"
 #include "ServerData.h"
 #include "ErrorHandle.h"
@@ -27,6 +28,7 @@ int main(int argc, char* argv[]){
 		VR::ServerData sData;
 		VR::ConfigData ConD(&sData);
 		ConD.ReadData();
+		LOG(ERROR) << "Testing google log error status";
 	}
 	catch (VR::Error::Exit_Command & e) {
 		VR::Debug::ConsoleMsg("Exit Command");
