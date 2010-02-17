@@ -1,3 +1,4 @@
+# - Try to find Google Log include dirs and libraries
 # Copyright (C) 2009  Daniel Myers <dan@moird.com>
 #
 # This program is free software: you can redistribute it and/or modify
