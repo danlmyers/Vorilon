@@ -14,12 +14,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 
+Libraries
+--------------------------------------------------------------------
+Vorilon requires the use of several libraries and build tools.
+Cmake v2.8: http://www.cmake.org/
+Boost Libraries v1.42: http://www.boost.org/
+Google Log v0.3.0: http://zi.fi/cmake/Modules/
+Google Flags v1.1: http://code.google.com/p/google-gflags/
+
 Build
 --------------------------------------------------------------------
-To build the source code cmake v2.8 is needed and Boost Libraries V1.42
-are necessary.  Cmake can be downloaded from: http://www.cmake.org/
-Boost Libraries can be downloaded from: http://www.boost.org/
-The proper way to create the project files/make files is out of source
-with cmake.  IE Vorilon/build
-then compile under the build directory or load up your favorite coding
-software and make changes.
+The proper way to build is an out of source build.  IE. /vorilon/build/
+using cmake, if the libraries are not in the default installation path
+they will have to be manually found and added.  Using static libraries
+unless otherwise specified.
