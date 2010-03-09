@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#ifndef DEBUGHANDLE_H_
-#define DEBUGHANDLE_H_
+#ifndef VORILON_LOGINT_HPP_
+#define VORILON_LOGINT_HPP_
 #include <string>
 #include <iostream>
 #include "VDconfig.hpp"
@@ -38,4 +38,4 @@ namespace Vorilon {
 		};
 	}
 }
-#endif /* DEBUGHANDLE_H_ */
+#endif /* VORILON_LOGINT_HPP_ */
