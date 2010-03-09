@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "ConfigData.h"
+#include "ConfigData.hpp"
 
 namespace Vorilon{
 	ConfigData::ConfigData(ServerData *servD){

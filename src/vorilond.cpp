@@ -16,10 +16,10 @@
 */
 
 #include <iostream>
-#include "ConfigData.h"
-#include "ServerData.h"
-#include "ErrorHandle.h"
-#include "DebugHandle.h"
+#include "ConfigData.hpp"
+#include "ServerData.hpp"
+#include "ErrorHandle.hpp"
+#include "LogInt.hpp"
 
 namespace VR = Vorilon;
 int main(int argc, char* argv[]){

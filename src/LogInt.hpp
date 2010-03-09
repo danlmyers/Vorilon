@@ -19,7 +19,7 @@
 #define DEBUGHANDLE_H_
 #include <string>
 #include <iostream>
-#include "VDconfig.h"
+#include "VDconfig.hpp"
 
 //Very simple print out messages while in debug mode
 namespace Vorilon {

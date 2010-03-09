@@ -15,17 +15,17 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #Source Files
-set(VORILOND_SRC vorilond.cpp	DebugHandle.h
-	ConfigData.cpp	ConfigData.h
-	ServerData.cpp	ServerData.h
-	ErrorHandle.h)
+set(VORILOND_SRC vorilond.cpp	LogInt.hpp
+	ConfigData.cpp	ConfigData.hpp
+	ServerData.cpp	ServerData.hpp
+	ErrorHandle.hpp)
 
 #Additional Options
 option(DEBUG "Build Vorilon with Debugging code" ON)
 
 #VDConfig.h Creation
-configure_file(${CMAKE_SOURCE_DIR}/src/VDconfig.h.cmake
-				${CMAKE_BINARY_DIR}/src/VDconfig.h)
+configure_file(${CMAKE_SOURCE_DIR}/src/VDconfig.hpp.cmake
+				${CMAKE_BINARY_DIR}/src/VDconfig.hpp)
 
 
 #Boost Libraries
