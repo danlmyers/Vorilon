@@ -29,17 +29,17 @@ int main(int argc, char* argv[]){
 		ConD.ReadData();
 	}
 	catch (VR::Error::Exit_Command & e) {
-		VR::Debug::ConsoleMsg("Exit Command");
-		VR::Debug::ConsoleMsg(diagnostic_information(e));
+		VR::Log::Msg("Exit Command");
+		VR::Log::Msg(diagnostic_information(e));
 		return 0;
 	}
 	catch (boost::exception & e) {
-		VR::Debug::ConsoleMsg("Vorilon Standard Exception");
-		VR::Debug::ConsoleMsg(diagnostic_information(e));
+		VR::Log::Msg("Vorilon Standard Exception");
+		VR::Log::Msg(diagnostic_information(e));
 	}
 	catch (std::exception & e){
 		std::cerr << "Vorilon has experienced an error and is now exiting." << std::endl;
-		VR::Debug::ConsoleMsg(e.what());
+		VR::Log::Msg(e.what());
 	}
 	catch (...){
 		std::cerr << "Vorilon as experienced a default unhandled exception and has exited." << std::endl <<

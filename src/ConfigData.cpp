@@ -46,7 +46,7 @@ namespace Vorilon{
 				std::cerr << *file << std::endl;
 			}
 
-			Debug::ConsoleMsg(diagnostic_information(e));
+			Log::Msg(diagnostic_information(e));
 			BOOST_THROW_EXCEPTION(Error::Exit_Command());
 		}
 
@@ -54,13 +54,13 @@ namespace Vorilon{
 		//Load Values from config file into ServerData
 		//TODO Error Checking!
 		sData.Port(boost::lexical_cast<unsigned short>(KeyValue.find("port")->second));
-		Debug::ConsoleMsg("Config Port: " + boost::lexical_cast<std::string>(sData.Port()));
+		Log::Msg("Config Port: " + boost::lexical_cast<std::string>(sData.Port()));
 	}
 	
 	fs::path ConfigData::CheckForConf(){
 		BOOST_FOREACH(fs::path path, CFPaths){
 			if(fs::exists(path)){
-				Debug::ConsoleMsg("Config file found: " + path.string());
+				Log::Msg("Config file found: " + path.string());
 				return path;
 			}
 		}
@@ -73,7 +73,7 @@ namespace Vorilon{
 	fs::path ConfigData::CheckForConf(std::string conf){
 		fs::path tmpPath = conf;
 		if(fs::exists(tmpPath)){
-			Debug::ConsoleMsg("Config file found: " + tmpPath.string());
+			Log::Msg("Config file found: " + tmpPath.string());
 			return tmpPath;
 		}else{
 			BOOST_THROW_EXCEPTION(Error::File_Not_Found() << Error::file_name_info("vorilond.conf Not Found"));

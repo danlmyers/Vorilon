@@ -26,17 +26,17 @@
 
 //Very simple print out messages while in debug mode
 namespace Vorilon {
-	namespace Debug {
-		class ConsoleMsg{
+	namespace Log {
+		class Msg{
 		public:
 #ifdef DEBUG
-			ConsoleMsg(const std::string& Msg){
-				std::cout << "Debug: " << Msg << std::endl;
+			Msg(const std::string& sMsg){
+				std::cout << "Debug: " << sMsg << std::endl;
 			}
 #else
-			ConsoleMsg(const std::string& DBMsg){}
+			Msg(const std::string& sMsg){}
 #endif /*DEBUG*/
-			virtual ~ConsoleMsg(){}
+			virtual ~Msg(){}
 		
 		};
 	}
