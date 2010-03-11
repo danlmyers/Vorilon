@@ -20,6 +20,7 @@
 #define VDCONFIG_H_
 #cmakedefine DEBUG 1
 #define VORILOND_DEBUGCONFPATH "${CMAKE_SOURCE_DIR}/src/"
+#cmakedefine HAVE_SYSLOG_H_ 1
 
 
 #endif /* VDCONFIG_H_ */

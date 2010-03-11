@@ -20,6 +20,9 @@
 #include <string>
 #include <iostream>
 #include "VDconfig.hpp"
+#ifdef HAVE_SYSLOG_H_
+#include <syslog.h>
+#endif
 
 //Very simple print out messages while in debug mode
 namespace Vorilon {
@@ -27,8 +30,8 @@ namespace Vorilon {
 		class ConsoleMsg{
 		public:
 #ifdef DEBUG
-			ConsoleMsg(const std::string& DBMsg){
-				std::cout << "Debug: " << DBMsg << std::endl;
+			ConsoleMsg(const std::string& Msg){
+				std::cout << "Debug: " << Msg << std::endl;
 			}
 #else
 			ConsoleMsg(const std::string& DBMsg){}

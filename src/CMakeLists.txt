@@ -23,6 +23,9 @@ set(VORILOND_SRC vorilond.cpp	LogInt.hpp
 #Additional Options
 option(DEBUG "Build Vorilon with Debugging code" ON)
 
+#Check for Syslog.h
+check_include_file("syslog.h" HAVE_SYSLOG_H_)
+
 #VDConfig.h Creation
 configure_file(${CMAKE_SOURCE_DIR}/src/VDconfig.hpp.cmake
 				${CMAKE_BINARY_DIR}/src/VDconfig.hpp)
