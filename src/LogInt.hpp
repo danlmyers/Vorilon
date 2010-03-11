@@ -19,10 +19,13 @@
 #define VORILON_LOGINT_HPP_
 #include <string>
 #include <iostream>
+#include <boost/date_time/posix_time/posix_time.hpp>
 #include "VDconfig.hpp"
 #ifdef HAVE_SYSLOG_H_
 #include <syslog.h>
 #endif
+
+namespace bt = boost::posix_time;
 
 //Very simple print out messages while in debug mode
 namespace Vorilon {
@@ -31,7 +34,8 @@ namespace Vorilon {
 		public:
 #ifdef DEBUG
 			Msg(const std::string& sMsg){
-				std::cout << "Debug: " << sMsg << std::endl;
+				bt::ptime ct(bt::second_clock::local_time());
+				std::cout << "[" << bt::to_simple_string(ct) << "]" << sMsg << std::endl;
 			}
 #else
 			Msg(const std::string& sMsg){}
