@@ -1,5 +1,5 @@
 #Vorilon is a VOIP Conferencing system
-#Copyright (C) 2009  Daniel Myers <dan@moird.com>
+#Copyright (C) 2009,2010  Daniel Myers dan<at>moird.com
 #
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU General Public License as published by
