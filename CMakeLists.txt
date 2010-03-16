@@ -14,15 +14,16 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-#Out of Source Build Requirement
-if(${CMAKE_SOURCE_DIR} EQUAL ${CMAKE_BINARY_DIR})
-	message(FATAL_ERROR "Vorilond requires an out of source build")
-endif(${CMAKE_SOURCE_DIR} EQUAL ${CMAKE_BINARY_DIR})
-
 #General requirements
 cmake_minimum_required(VERSION 2.6)
 include (${CMAKE_ROOT}/Modules/CheckIncludeFile.cmake)
-project(VORILON)
+
+#require Out of source build
+string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_BINARY_DIR}" VORILON_IN_SOURCE)
+if(VORILON_IN_SOURCE)
+	message(FATAL_ERROR "Vorilon Requires an out of source build.  Please create a separate build directory and run 'cmake path_to_vorilon [options]' there.")
+endif(VORILON_IN_SOURCE)
 
 #Main Program Parts
+project(Vorilon)
 add_subdirectory(src)
