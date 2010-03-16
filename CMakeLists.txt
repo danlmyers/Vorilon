@@ -14,6 +14,11 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>
 
+#Out of Source Build Requirement
+if(${CMAKE_SOURCE_DIR} EQUAL ${CMAKE_BINARY_DIR})
+	message(FATAL_ERROR "Vorilond requires an out of source build")
+endif(${CMAKE_SOURCE_DIR} EQUAL ${CMAKE_BINARY_DIR})
+
 #General requirements
 cmake_minimum_required(VERSION 2.6)
 include (${CMAKE_ROOT}/Modules/CheckIncludeFile.cmake)
