@@ -18,7 +18,7 @@
 
 #ifndef VDCONFIG_H_
 #define VDCONFIG_H_
-#cmakedefine DEBUG_MODE 1
+#cmakedefine01 DEBUG_MODE
 #define VORILOND_DEBUGCONFPATH "${CMAKE_SOURCE_DIR}/src/"
 #cmakedefine HAVE_SYSLOG_H_ 1
 
