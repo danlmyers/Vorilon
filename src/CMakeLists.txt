@@ -21,7 +21,7 @@ set(VORILOND_SRC vorilond.cpp	LogInt.hpp
 	ErrorHandle.hpp)
 
 #Additional Options
-option(DEBUG "Build Vorilon with Debugging code" ON)
+option(DEBUG_MODE "Build Vorilon with Debugging code" ON)
 
 #Check for Syslog.h
 check_include_file("syslog.h" HAVE_SYSLOG_H_)

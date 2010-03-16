@@ -30,16 +30,24 @@ namespace bt = boost::posix_time;
 //Very simple print out messages while in debug mode
 namespace Vorilon {
 	namespace Log {
+	
+		enum LOG_LEVEL {
+			ERROR,
+			WARNING,
+			INFO,
+			DEBUG
+		};
+		
 		class Msg{
 		public:
-#ifdef DEBUG
-			Msg(const std::string& sMsg){
+			Msg(LOG_LEVEL lvl, const std::string& sMsg){
 				bt::ptime ct(bt::second_clock::local_time());
-				std::cout << "[" << bt::to_simple_string(ct) << "]" << sMsg << std::endl;
+				std::string log_str[] = {"Error","Warning","Info","Debug"};
+#ifdef DEBUG_MODE
+				std::cout << "[" << bt::to_simple_string(ct) << "]" << log_str[lvl] << ": " << sMsg << std::endl;
+#endif /* DEBUG_MODE */
 			}
-#else
-			Msg(const std::string& sMsg){}
-#endif /*DEBUG*/
+
 			virtual ~Msg(){}
 		
 		};

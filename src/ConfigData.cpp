@@ -27,9 +27,9 @@ namespace Vorilon{
 		//While in Debug mode also look for a config in the sources/server folder
 		//Cause im lazy and I don't want to copy the config file while loading up
 		//Vorilond for testing everytime I wipe out the cmake files
-#if DEBUG
+#if DEBUG_MOD
 		CFPaths.push_back(VORILOND_DEBUGCONFPATH + CFile);
-#endif /*DEBUG*/
+#endif /*DEBUG_MODE*/
 		CFPaths.push_back("./" + CFile);
 		CFPaths.push_back("~/.vorilond/" + CFile);
 		CFPaths.push_back("/etc/" + CFile);
@@ -45,8 +45,9 @@ namespace Vorilon{
 			if (std::string *file=boost::get_error_info<Error::file_name_info>(e)){
 				std::cerr << *file << std::endl;
 			}
-
-			Log::Msg(diagnostic_information(e));
+			
+			Log::Msg(Log::ERROR, e.what());
+			Log::Msg(Log::DEBUG, diagnostic_information(e));
 			BOOST_THROW_EXCEPTION(Error::Exit_Command());
 		}
 
@@ -54,13 +55,13 @@ namespace Vorilon{
 		//Load Values from config file into ServerData
 		//TODO Error Checking!
 		sData.Port(boost::lexical_cast<unsigned short>(KeyValue.find("port")->second));
-		Log::Msg("Config Port: " + boost::lexical_cast<std::string>(sData.Port()));
+		Log::Msg(Log::INFO, "Config Port: " + boost::lexical_cast<std::string>(sData.Port()));
 	}
 	
 	fs::path ConfigData::CheckForConf(){
 		BOOST_FOREACH(fs::path path, CFPaths){
 			if(fs::exists(path)){
-				Log::Msg("Config file found: " + path.string());
+				Log::Msg(Log::INFO, "Config file found: " + path.string());
 				return path;
 			}
 		}
@@ -73,7 +74,7 @@ namespace Vorilon{
 	fs::path ConfigData::CheckForConf(std::string conf){
 		fs::path tmpPath = conf;
 		if(fs::exists(tmpPath)){
-			Log::Msg("Config file found: " + tmpPath.string());
+			Log::Msg(Log::INFO, "Config file found: " + tmpPath.string());
 			return tmpPath;
 		}else{
 			BOOST_THROW_EXCEPTION(Error::File_Not_Found() << Error::file_name_info("vorilond.conf Not Found"));
