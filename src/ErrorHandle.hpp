@@ -1,4 +1,4 @@
-/*Vorilon is a VOIP Conferencing system
+/*This file is part of Vorilon
  * Copyright (C) 2009,2010  Daniel Myers dan<at>moird.com
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,8 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-#ifndef ERRORHANDLE_H_
-#define ERRORHANDLE_H_
+#ifndef VORILON_ERRORHANDLE_HPP_
+#define VORILON_ERRORHANDLE_HPP_
 #include <boost/exception/all.hpp>
 #include <errno.h>
 #include <stdexcept>
@@ -43,4 +43,4 @@ namespace Vorilon {
 
 
 
-#endif /* ERRORHANDLE_H_ */
+#endif /* VORILON_ERRORHANDLE_HPP_ */

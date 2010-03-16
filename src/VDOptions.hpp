@@ -1,4 +1,4 @@
-/*Vorilon is a VOIP Conferencing system
+/*This file is part of Vorilon
  * Copyright (C) 2009,2010  Daniel Myers dan<at>moird.com
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#ifndef CONFIGDATA_H_
-#define CONFIGDATA_H_
+#ifndef VORILON_VDOPTIONS_HPP_
+#define VORILON_VDOPTIONS_HPP_
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/lexical_cast.hpp>
@@ -60,4 +60,4 @@ namespace Vorilon{
 
 
 
-#endif /* CONFIGDATA_H_ */
+#endif /* VORILON_VDOPTIONS_HPP_ */

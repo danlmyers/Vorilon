@@ -1,4 +1,4 @@
-/*Vorilon is a VOIP Conferencing system
+/*This file is part of Vorilon
  * Copyright (C) 2009,2010  Daniel Myers dan<at>moird.com
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "ConfigData.hpp"
+#include "VDOptions.hpp"
 
 namespace Vorilon{
 	ConfigData::ConfigData(ServerData *servD){

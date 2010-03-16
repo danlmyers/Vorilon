@@ -1,4 +1,4 @@
-#Vorilon is a VOIP Conferencing system
+#This file is part of Vorilon
 #Copyright (C) 2009,2010  Daniel Myers dan<at>moird.com
 #
 #This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
 
 #Source Files
 set(VORILOND_SRC vorilond.cpp	LogInt.hpp
-	ConfigData.cpp	ConfigData.hpp
+	VDOptions.cpp	VDOptions.hpp
 	ServerData.cpp	ServerData.hpp
 	ErrorHandle.hpp)
 
