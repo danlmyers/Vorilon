@@ -25,8 +25,8 @@ namespace VR = Vorilon;
 int main(int argc, char* argv[]){
 	try{
 		VR::ServerData sData;
-		VR::ConfigData ConD(&sData);
-		ConD.ReadData();
+		VR::VDOptions VDO(&sData);
+		VDO.ReadData();
 	}
 	catch (VR::Error::Exit_Command & e) {
 		VR::Log::Msg(VR::Log::DEBUG, "Exit Command");

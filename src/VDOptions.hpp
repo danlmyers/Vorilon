@@ -17,6 +17,7 @@
 
 #ifndef VORILON_VDOPTIONS_HPP_
 #define VORILON_VDOPTIONS_HPP_
+#include <boost/program_options.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/lexical_cast.hpp>
@@ -31,19 +32,22 @@
 #include "VDconfig.hpp"
 
 namespace fs = boost::filesystem;
+namespace po = boost::program_options;
 
 namespace Vorilon{
 	typedef std::pair<std::string, std::string> KeyValueEntry_t;
 	
 	//Config Data, manages a Configuration file as well as user switches
 	//on the program
-	class ConfigData {
+	class VDOptions {
 	public:
-		ConfigData(ServerData*);
-		virtual ~ConfigData();
+		VDOptions(ServerData*);
+		virtual ~VDOptions();
 		void ReadData();
 					
 	private:
+		po::options_description cmdline_options;
+		po::options_description config_options;
 		std::string CFile;
 		std::list<fs::path> CFPaths;
 		ServerData sData;
@@ -52,6 +56,8 @@ namespace Vorilon{
 		
 		fs::path CheckForConf();
 		fs::path CheckForConf(std::string);
+		
+		void generaloptions();
 		void ReadConfigFile(std::string);
 		void LoadConfigFile(fs::path);
 	};

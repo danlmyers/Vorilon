@@ -18,7 +18,7 @@
 #include "VDOptions.hpp"
 
 namespace Vorilon{
-	ConfigData::ConfigData(ServerData *servD){
+	VDOptions::VDOptions(ServerData *servD){
 		sData = *servD;
 		
 		//Paths to Config File and Config file name
@@ -27,26 +27,41 @@ namespace Vorilon{
 		//While in Debug mode also look for a config in the sources/server folder
 		//Cause im lazy and I don't want to copy the config file while loading up
 		//Vorilond for testing everytime I wipe out the cmake files
-#if DEBUG_MOD
+#if DEBUG_MODE
 		CFPaths.push_back(VORILOND_DEBUGCONFPATH + CFile);
 #endif /*DEBUG_MODE*/
 		CFPaths.push_back("./" + CFile);
 		CFPaths.push_back("~/.vorilond/" + CFile);
 		CFPaths.push_back("/etc/" + CFile);
+		
+		
 	}
 
-	ConfigData::~ConfigData(){}
+	VDOptions::~VDOptions(){}
 
-	void ConfigData::ReadData(){
+	void VDOptions::generaloptions(){
+		po::options_description generic("General Options");
+		generic.add_options()
+			("version,v", "Print version for Vorilond")
+			("help,h", "Print this help message")
+			("config,c", po::value<std::string>(&CFile)->default_value("vorilond.conf"), "Name of a vorilond configuration file")
+			;
+		po::options_description config("Config File Options");
+		config.add_options()
+		("port", po::value(boost::lexical_cast<unsigned short>(sData.Port()))->default_value(52000), "Port that Vorilond listens on.")
+		;
+		
+	}
+	
+	void VDOptions::ReadData(){
 		try{
 			LoadConfigFile(CheckForConf());
 		}
 		catch (Error::File_Not_Found & e){
 			if (std::string *file=boost::get_error_info<Error::file_name_info>(e)){
-				std::cerr << *file << std::endl;
+				Log::Msg(Log::ERROR, *file);
 			}
 			
-			Log::Msg(Log::ERROR, e.what());
 			Log::Msg(Log::DEBUG, diagnostic_information(e));
 			BOOST_THROW_EXCEPTION(Error::Exit_Command());
 		}
@@ -58,7 +73,7 @@ namespace Vorilon{
 		Log::Msg(Log::INFO, "Config Port: " + boost::lexical_cast<std::string>(sData.Port()));
 	}
 	
-	fs::path ConfigData::CheckForConf(){
+	fs::path VDOptions::CheckForConf(){
 		BOOST_FOREACH(fs::path path, CFPaths){
 			if(fs::exists(path)){
 				Log::Msg(Log::INFO, "Config file found: " + path.string());
@@ -71,7 +86,7 @@ namespace Vorilon{
 		return NULL;
 	}
 
-	fs::path ConfigData::CheckForConf(std::string conf){
+	fs::path VDOptions::CheckForConf(std::string conf){
 		fs::path tmpPath = conf;
 		if(fs::exists(tmpPath)){
 			Log::Msg(Log::INFO, "Config file found: " + tmpPath.string());
@@ -82,7 +97,7 @@ namespace Vorilon{
 		return NULL;
 	}
 
-	void ConfigData::LoadConfigFile(fs::path ConfFile){
+	void VDOptions::LoadConfigFile(fs::path ConfFile){
 		//At this point we know there is a Config File, but we need some error handling
 		//TODO Error Checking
 		std::string cfline;
@@ -93,7 +108,7 @@ namespace Vorilon{
 		cFin.close();
 	}
 
-	void ConfigData::ReadConfigFile(std::string cfline){
+	void VDOptions::ReadConfigFile(std::string cfline){
 		if(cfline[0] == '#' || cfline == "/n"){
 			return;
 		}
