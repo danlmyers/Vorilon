@@ -18,16 +18,7 @@
 #include "ServerData.hpp"
 
 namespace Vorilon {
-	ServerData::ServerData(){
-		Port_ = 0;
-	}
-	ServerData::~ServerData(){}
-	
-	void ServerData::Port(unsigned short port){
-		Port_ = port;
-	}
-	
-	unsigned short ServerData::Port(){
-		return Port_;
+	namespace ServerData {
+		unsigned short PORT;
 	}
 }

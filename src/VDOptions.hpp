@@ -41,25 +41,23 @@ namespace Vorilon{
 	//on the program
 	class VDOptions {
 	public:
-		VDOptions(ServerData*);
+		VDOptions();
 		virtual ~VDOptions();
-		void ReadData();
+		void ReadData(int*, char*[]);
 					
 	private:
 		po::options_description cmdline_options;
 		po::options_description config_options;
 		std::string CFile;
 		std::list<fs::path> CFPaths;
-		ServerData sData;
 		
-		std::map<std::string, std::string> KeyValue;
 		
-		fs::path CheckForConf();
-		fs::path CheckForConf(std::string);
+		//fs::path CheckForConf();
+		//fs::path CheckForConf(std::string);
 		
-		void generaloptions();
-		void ReadConfigFile(std::string);
-		void LoadConfigFile(fs::path);
+		void GeneralOptions();
+		//void ReadConfigFile(std::string);
+		//void LoadConfigFile(fs::path);
 	};
 }
 

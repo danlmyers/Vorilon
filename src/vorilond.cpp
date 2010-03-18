@@ -24,9 +24,8 @@
 namespace VR = Vorilon;
 int main(int argc, char* argv[]){
 	try{
-		VR::ServerData sData;
-		VR::VDOptions VDO(&sData);
-		VDO.ReadData();
+		VR::VDOptions VDO;
+		VDO.ReadData(&argc, argv);
 	}
 	catch (VR::Error::Exit_Command & e) {
 		VR::Log::Msg(VR::Log::DEBUG, "Exit Command");
@@ -39,7 +38,7 @@ int main(int argc, char* argv[]){
 	}
 	catch (std::exception & e){
 		VR::Log::Msg(VR::Log::ERROR, "Vorilon has experienced an error and is now exiting.");
-		VR::Log::Msg(VR::Log::WARNING, e.what());
+		VR::Log::Msg(VR::Log::ERROR, e.what());
 	}
 	catch (...){
 		std::cerr << "Vorilon as experienced a default unhandled exception and has exited." << std::endl <<

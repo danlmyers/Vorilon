@@ -19,17 +19,9 @@
 #define VORILON_SERVERDATA_HPP_
 
 namespace Vorilon {
-	class ServerData{
-	public:
-		ServerData();
-		virtual ~ServerData();
-		
-		void Port(unsigned short);
-		unsigned short Port();
-		
-	private:
-		unsigned short Port_;
-	};
+	namespace ServerData {
+		extern unsigned short PORT;
+	}
 }
 
 
