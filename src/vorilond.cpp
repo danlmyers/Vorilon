@@ -25,11 +25,10 @@ namespace VR = Vorilon;
 int main(int argc, char* argv[]){
 	try{
 		VR::VDOptions VDO;
-		VDO.ReadData(&argc, argv);
+		VDO.ReadData(argc, argv);
 	}
-	catch (VR::Error::Exit_Command & e) {
-		VR::Log::Msg(VR::Log::DEBUG, "Exit Command");
-		VR::Log::Msg(VR::Log::DEBUG, diagnostic_information(e));
+	catch (VR::Error::Exit & e) {
+		VR::Log::Msg(VR::Log::DEBUG, "Exit");
 		return 0;
 	}
 	catch (boost::exception & e) {

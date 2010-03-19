@@ -33,7 +33,7 @@ namespace Vorilon {
 		//Error identifiers
 		struct General : virtual boost::exception, virtual std::exception { };
 		struct Variable : virtual General{};
-		struct Exit_Command : virtual General{};
+		struct Exit : virtual General{};
 		struct File_Not_Found : virtual General{};
 		struct File_IO : virtual General{};
 		

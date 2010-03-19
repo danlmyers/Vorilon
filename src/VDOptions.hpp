@@ -43,7 +43,7 @@ namespace Vorilon{
 	public:
 		VDOptions();
 		virtual ~VDOptions();
-		void ReadData(int*, char*[]);
+		void ReadData(int, char*[]);
 					
 	private:
 		po::options_description cmdline_options;

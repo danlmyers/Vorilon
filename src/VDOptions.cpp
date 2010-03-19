@@ -32,7 +32,7 @@ namespace Vorilon{
 		CFPaths.push_back("./" + CFile);
 		CFPaths.push_back("~/.vorilond/" + CFile);
 		CFPaths.push_back("/etc/" + CFile);
-		
+		GeneralOptions();
 	}
 
 	VDOptions::~VDOptions(){}
@@ -58,12 +58,19 @@ namespace Vorilon{
 	}
 	
 	//Process the command line and config file
-	void VDOptions::ReadData(int* argc, char* argv[]){
+	void VDOptions::ReadData(int argc, char* argv[]){
 		
+		po::variables_map vm;
+		store(po::command_line_parser(argc, argv).options(cmdline_options).run(), vm);
+		notify(vm);
 
-
-		//Load Values from config file into ServerData
-		Log::Msg(Log::INFO, "Config Port: " + boost::lexical_cast<std::string>(ServerData::PORT));
+		if (vm.count("help")) {
+			std::cout << cmdline_options << std::endl;
+			BOOST_THROW_EXCEPTION(Error::Exit());
+		}
+		
+		//Report info on the port number
+		Log::Msg(Log::INFO, "Vorilond listening on port: " + boost::lexical_cast<std::string>(ServerData::PORT));
 	}
 	
 	
