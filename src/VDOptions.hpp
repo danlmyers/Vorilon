@@ -49,15 +49,13 @@ namespace Vorilon{
 		po::options_description cmdline_options;
 		po::options_description config_options;
 		std::string CFile;
+		std::string cmdCFile;
 		std::list<fs::path> CFPaths;
 		
 		
-		//fs::path CheckForConf();
-		//fs::path CheckForConf(std::string);
+		fs::path CheckForConf();
 		
 		void GeneralOptions();
-		//void ReadConfigFile(std::string);
-		//void LoadConfigFile(fs::path);
 	};
 }
 

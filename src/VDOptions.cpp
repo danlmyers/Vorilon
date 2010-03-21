@@ -43,7 +43,7 @@ namespace Vorilon{
 		generic.add_options()
 			("version,v", "Print version for Vorilond")
 			("help,h", "Print this help message")
-			("config,c", po::value<std::string>(&CFile)->default_value("vorilond.conf"), "Name of a vorilond configuration file")
+			("config,c", po::value<std::string>(&cmdCFile), "Name of a vorilond configuration file IE. vorilond.conf")
 			;
 		po::options_description config("Config File Options");
 		config.add_options()
@@ -69,8 +69,41 @@ namespace Vorilon{
 			BOOST_THROW_EXCEPTION(Error::Exit());
 		}
 		
+		if (vm.count("version")) {
+			std::cout << "vorilon version 0" << std::endl;
+			BOOST_THROW_EXCEPTION(Error::Exit());
+		}
+		
+		if (vm.count("config")) {
+			CFPaths.push_front(cmdCFile);
+		}
+		
+		fs::ifstream cfin(CheckForConf());
+		if (!cfin) {
+			BOOST_THROW_EXCEPTION(Error::File_IO() << Error::file_name_info("Config file is not Readable"));
+		} else {
+			store(parse_config_file(cfin, config_options), vm);
+			notify(vm);
+		}
+
+		
 		//Report info on the port number
 		Log::Msg(Log::INFO, "Vorilond listening on port: " + boost::lexical_cast<std::string>(ServerData::PORT));
+	}
+	
+	
+	//Check for Config file on CFPaths return a string of the path
+	fs::path VDOptions::CheckForConf(){
+		BOOST_FOREACH(fs::path tmpCFile, CFPaths){
+			if (fs::exists(tmpCFile)) {
+				Log::Msg(Log::INFO, "Found Config File at: " + tmpCFile.string());
+				return tmpCFile;
+			}
+		}
+		//if we have gotten this far then no config file was found
+		BOOST_THROW_EXCEPTION(Error::File_Not_Found() << Error::file_name_info("A Proper Config file was not found or specified"));
+		return NULL;
+		
 	}
 	
 	
